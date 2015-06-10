@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="permispiste" match-name="action"/>
+  <table-filter match-catalog="permispiste" match-name="appartient"/>
+  <table-filter match-catalog="permispiste" match-name="apprenant"/>
+  <table-filter match-catalog="permispiste" match-name="calendrier"/>
+  <table-filter match-catalog="permispiste" match-name="est_associe"/>
+  <table-filter match-catalog="permispiste" match-name="fixe"/>
+  <table-filter match-catalog="permispiste" match-name="indicateur"/>
+  <table-filter match-catalog="permispiste" match-name="jeu"/>
+  <table-filter match-catalog="permispiste" match-name="mission"/>
+  <table-filter match-catalog="permispiste" match-name="objectif"/>
+  <table-filter match-catalog="permispiste" match-name="obtient"/>
+  <table-filter match-catalog="permispiste" match-name="possede"/>
+  <table-filter match-catalog="permispiste" match-name="regle"/>
+</hibernate-reverse-engineering>

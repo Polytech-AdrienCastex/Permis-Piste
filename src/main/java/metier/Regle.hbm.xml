@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Regle" table="regle" catalog="permispiste" optimistic-lock="version">
+        <id name="numregle" type="int">
+            <column name="NUMREGLE" />
+            <generator class="assigned" />
+        </id>
+        <property name="libregle" type="string">
+            <column name="LIBREGLE" length="25" />
+        </property>
+        <property name="scoremin" type="java.lang.Integer">
+            <column name="SCOREMIN" />
+        </property>
+        <set name="actions" table="possede" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMREGLE" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Action">
+                <column name="NUMACTION" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Calendrier" table="calendrier" catalog="permispiste" optimistic-lock="version">
+        <id name="datejour" type="date">
+            <column name="DATEJOUR" length="10" />
+            <generator class="assigned" />
+        </id>
+        <set name="obtients" table="obtient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DATEJOUR" length="10" not-null="true" />
+            </key>
+            <one-to-many class="metier.Obtient" />
+        </set>
+    </class>
+</hibernate-mapping>

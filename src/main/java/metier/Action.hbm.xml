@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Action" table="action" catalog="permispiste" optimistic-lock="version">
+        <id name="numaction" type="int">
+            <column name="NUMACTION" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="action" class="metier.Action" fetch="select">
+            <column name="ACT_NUMACTION" />
+        </many-to-one>
+        <property name="libaction" type="string">
+            <column name="LIBACTION" length="25" />
+        </property>
+        <property name="scoremin" type="java.lang.Integer">
+            <column name="SCOREMIN" />
+        </property>
+        <set name="indicateurs" table="indicateur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMACTION" not-null="true" />
+            </key>
+            <one-to-many class="metier.Indicateur" />
+        </set>
+        <set name="jeus" table="appartient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMACTION" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Jeu">
+                <column name="NUMJEU" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="actions" table="action" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ACT_NUMACTION" />
+            </key>
+            <one-to-many class="metier.Action" />
+        </set>
+        <set name="objectifs" table="est_associe" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="NUMACTION" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Objectif">
+                <column name="NUMOBJECTIF" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="obtients" table="obtient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMACTION" not-null="true" />
+            </key>
+            <one-to-many class="metier.Obtient" />
+        </set>
+        <set name="regles" table="possede" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="NUMACTION" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Regle">
+                <column name="NUMREGLE" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

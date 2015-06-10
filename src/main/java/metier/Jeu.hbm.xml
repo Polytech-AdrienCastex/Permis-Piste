@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Jeu" table="jeu" catalog="permispiste" optimistic-lock="version">
+        <id name="numjeu" type="int">
+            <column name="NUMJEU" />
+            <generator class="assigned" />
+        </id>
+        <property name="libellejeu" type="string">
+            <column name="LIBELLEJEU" length="25" />
+        </property>
+        <set name="missions" table="mission" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMJEU" not-null="true" />
+            </key>
+            <one-to-many class="metier.Mission" />
+        </set>
+        <set name="actions" table="appartient" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="NUMJEU" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Action">
+                <column name="NUMACTION" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

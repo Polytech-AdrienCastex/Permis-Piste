@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Obtient" table="obtient" catalog="permispiste" optimistic-lock="version">
+        <composite-id name="id" class="metier.ObtientId">
+            <key-property name="numapprenant" type="int">
+                <column name="NUMAPPRENANT" />
+            </key-property>
+            <key-property name="datejour" type="date">
+                <column name="DATEJOUR" length="10" />
+            </key-property>
+            <key-property name="numaction" type="int">
+                <column name="NUMACTION" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="action" class="metier.Action" update="false" insert="false" fetch="select">
+            <column name="NUMACTION" not-null="true" />
+        </many-to-one>
+        <many-to-one name="apprenant" class="metier.Apprenant" update="false" insert="false" fetch="select">
+            <column name="NUMAPPRENANT" not-null="true" />
+        </many-to-one>
+        <many-to-one name="calendrier" class="metier.Calendrier" update="false" insert="false" fetch="select">
+            <column name="DATEJOUR" length="10" not-null="true" />
+        </many-to-one>
+        <property name="valeurdebut" type="java.lang.Integer">
+            <column name="VALEURDEBUT" />
+        </property>
+        <property name="valeurfin" type="java.lang.Integer">
+            <column name="VALEURFIN" />
+        </property>
+    </class>
+</hibernate-mapping>

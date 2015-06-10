@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 juin 2015 10:21:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Objectif" table="objectif" catalog="permispiste" optimistic-lock="version">
+        <id name="numobjectif" type="int">
+            <column name="NUMOBJECTIF" />
+            <generator class="assigned" />
+        </id>
+        <property name="libobectif" type="string">
+            <column name="LIBOBECTIF" length="25" />
+        </property>
+        <set name="actions" table="est_associe" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMOBJECTIF" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Action">
+                <column name="NUMACTION" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="missions" table="fixe" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMOBJECTIF" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Mission">
+                <column name="NUMMISSION" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
